@@ -1,4 +1,4 @@
-package bptracker2;
+package beppy;
 
 import java.io.File;
 
@@ -30,7 +30,7 @@ public enum Sysvar {
 		}
 	}
 	/*this returns the directory of where the config file is being stores, but does not return the
-	 * file itself. this should be used when creating the directory itself or checking if the 
+	 * file itself. this should be used when creating the directory itself or checking if the
 	 * directory exists, but not for checking if the file exists or creating the file itself.*/
 	public final String getDefaultConfigFilePathDirectory() {
 		String OS = getOS();
@@ -49,7 +49,7 @@ public enum Sysvar {
 			return"";
 		}
 	}
-	
+
 	/* returns the default file directory to use to store the logged information
 	 * this should be used to check if the file exists or to create the file itself
 	 * but not to check if the directory exists or to create the directory*/

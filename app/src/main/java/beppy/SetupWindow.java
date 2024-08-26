@@ -1,4 +1,4 @@
-package bptracker2;
+package beppy;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
