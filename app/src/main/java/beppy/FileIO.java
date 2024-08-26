@@ -12,7 +12,7 @@ public class FileIO {
 	public final boolean doesExist(int arg) throws IOException {
 		if (arg == 0) {
 			// throws IOException here if properties file does not exist
-			try (FileInputStream input = new FileInputStream(Sysvar.var.getDefaultConfigFilePath())) {
+			try (FileInputStream input = new FileInputStream(SysVar.var.getDefaultConfigFilePath())) {
 				return true;
 			} catch (IOException e) {
 				return false;
@@ -20,9 +20,9 @@ public class FileIO {
 		}
 		if (arg == 1) {
 			// throws IOException if entries file does not exist
-			FileInputStream input = new FileInputStream(Sysvar.var.getDefaultConfigFilePath());
+			FileInputStream input = new FileInputStream(SysVar.var.getDefaultConfigFilePath());
 			Properties properties = new Properties();
-			FileInputStream stream = new FileInputStream(Sysvar.var.getDefaultConfigFilePath());
+			FileInputStream stream = new FileInputStream(SysVar.var.getDefaultConfigFilePath());
 			properties.load(stream);
 			try (FileInputStream entries = new FileInputStream(
 					properties.getProperty("entries-path") + properties.getProperty("entries-filename"))) {
@@ -40,7 +40,7 @@ public class FileIO {
 	// this method read the .properties file
 	public final String readProperties() throws IOException {
 		Properties properties = new Properties();
-		FileInputStream stream = new FileInputStream(Sysvar.var.getDefaultConfigFilePath());
+		FileInputStream stream = new FileInputStream(SysVar.var.getDefaultConfigFilePath());
 		properties.load(stream);
 		return properties.getProperty("entries-path");
 	}
@@ -48,14 +48,14 @@ public class FileIO {
 	// this method creates the properties file and fills it.
 	public void writeProperties(String configDefinedPath) throws IOException {
 		Properties properties = new Properties();
-		File file = new File(Sysvar.var.getDefaultConfigFilePath()); // this is the config.properties file
-		File directory = new File(Sysvar.var.getDefaultConfigFilePathDirectory()); // this is the dir for the prop file
+		File file = new File(SysVar.var.getDefaultConfigFilePath()); // this is the config.properties file
+		File directory = new File(SysVar.var.getDefaultConfigFilePathDirectory()); // this is the dir for the prop file
 		if (!file.exists()) {// test if config file exists already
 			if (configDefinedPath == null) { // if the user selects defaults for paths then this runs
 				if (directory.exists() && !file.exists()) { // if directory but not file exists run this
-					properties.setProperty("entries-path", Sysvar.var.getDefaultEntryFilePathDirectory());
+					properties.setProperty("entries-path", SysVar.var.getDefaultEntryFilePathDirectory());
 					properties.setProperty("entries-filename", "\\entries.xlsx");
-					try (FileOutputStream output = new FileOutputStream(Sysvar.var.getDefaultConfigFilePath())) {
+					try (FileOutputStream output = new FileOutputStream(SysVar.var.getDefaultConfigFilePath())) {
 						properties.store(output, null);
 						System.out.println("Config file created.");
 					} catch (IOException e) {
@@ -66,7 +66,7 @@ public class FileIO {
 					if (directory.mkdirs()) {
 						writeProperties(null);
 						System.out.println(
-								"Config directory created using defaults: " + Sysvar.var.getDefaultEntryFilePath());
+								"Config directory created using defaults: " + SysVar.var.getDefaultEntryFilePath());
 					} else {
 						System.out.println("Failed to make config directory");
 					}
@@ -89,7 +89,7 @@ public class FileIO {
 					if (directory.exists() && !file.exists()) {// if directory but not prop file exists, create propfile
 						properties.setProperty("entries-path", configDefinedPath);
 						properties.setProperty("entries-filename", "\\entries.xlsx");
-						try (FileOutputStream output = new FileOutputStream(Sysvar.var.getDefaultConfigFilePath())) {
+						try (FileOutputStream output = new FileOutputStream(SysVar.var.getDefaultConfigFilePath())) {
 							properties.store(output, null);
 							System.out.println("Config file created.");
 						} catch (IOException e) {
@@ -107,7 +107,7 @@ public class FileIO {
 	public void writeEntries() {
 		Properties properties = new Properties();
 		try {
-			FileInputStream stream = new FileInputStream(Sysvar.var.getDefaultConfigFilePath());
+			FileInputStream stream = new FileInputStream(SysVar.var.getDefaultConfigFilePath());
 			properties.load(stream);
 			File file = new File(properties.getProperty("entries-path"));
 			System.out.println(properties.getProperty("entries-path"));

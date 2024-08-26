@@ -2,7 +2,7 @@ package beppy;
 
 import java.io.File;
 
-public enum Sysvar {
+public enum SysVar {
 	var;
 
 	public final String getOS() {

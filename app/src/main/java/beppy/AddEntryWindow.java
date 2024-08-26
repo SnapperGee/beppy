@@ -22,7 +22,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
 public class AddEntryWindow extends JFrame {
-	private String FILE_PATH = Sysvar.var.getDefaultConfigFilePath();
+	private String FILE_PATH = SysVar.var.getDefaultConfigFilePath();
 	private JTextField systolicField;
 	private JTextField diastolicField;
 	private JTextField bpmField;
