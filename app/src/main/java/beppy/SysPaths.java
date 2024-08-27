@@ -2,6 +2,7 @@ package beppy;
 
 import java.util.Objects;
 import java.nio.file.Path;
+import java.nio.file.Files;
 
 final class SysPaths
 {
@@ -12,6 +13,12 @@ final class SysPaths
     final static Path ROOT_DIR_PATH = generateRootDirPath();
     final static Path CONFIG_FILE_PATH = generateConfigFilePath();
     final static Path DEFAULT_ENTRIES_OUTPUT_FILE_PATH = generateDefaultEntriesOutputFilePath();
+
+    static boolean rootDirExists() { return Files.exists(ROOT_DIR_PATH); }
+
+    static boolean configFileExists() { return Files.exists(CONFIG_FILE_PATH); }
+
+    static boolean defaultEntriesOutputFileExists() { return Files.exists(DEFAULT_ENTRIES_OUTPUT_FILE_PATH); }
 
     static Path generateRootDirPath()
     {
