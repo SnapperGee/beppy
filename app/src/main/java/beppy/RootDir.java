@@ -6,8 +6,8 @@ import java.nio.file.Files;
 
 final class RootDir
 {
-    private final static String WIN_MAC_ROOT_DIR_NAME = "BPTracker";
-    private final static String NIX_ROOT_DIR_NAME = '.' + WIN_MAC_ROOT_DIR_NAME;
+    private final static String WIN_MAC_DIR_NAME = "BPTracker";
+    private final static String NIX_DIR_NAME = '.' + WIN_MAC_DIR_NAME;
 
     final static String DATA_OUTPUT_FILE_NAME = "data.csv";
     final static Path PATH = generatePath();
@@ -29,7 +29,7 @@ final class RootDir
                     System.getenv("APPDATA"),
                     "Null Windows \"APPDATA\" env variable.");
 
-            return Path.of(windowsAppDataDir, RootDir.WIN_MAC_ROOT_DIR_NAME).toAbsolutePath();
+            return Path.of(windowsAppDataDir, RootDir.WIN_MAC_DIR_NAME).toAbsolutePath();
         }
 
         if(lowerCaseOSName.contains("mac"))
@@ -39,7 +39,7 @@ final class RootDir
                     System.getProperty("user.home"),
                     "Null Mac \"user.home\" sys property.");
 
-            return Path.of(macHomeDir, "Library", "Application Support", RootDir.WIN_MAC_ROOT_DIR_NAME).toAbsolutePath();
+            return Path.of(macHomeDir, "Library", "Application Support", RootDir.WIN_MAC_DIR_NAME).toAbsolutePath();
         }
 
         if(lowerCaseOSName.contains("nix"))
@@ -49,7 +49,7 @@ final class RootDir
                     System.getProperty("user.home"),
                     "Null nix \"user.home\" sys property.");
 
-            return Path.of(nixHomeDir, RootDir.NIX_ROOT_DIR_NAME).toAbsolutePath();
+            return Path.of(nixHomeDir, RootDir.NIX_DIR_NAME).toAbsolutePath();
         }
 
         throw new Error(String.format("Unrecognized operating system: \"%s\"", lowerCaseOSName));
