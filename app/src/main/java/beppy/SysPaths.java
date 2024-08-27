@@ -8,17 +8,10 @@ final class SysPaths
 {
     final static String WIN_MAC_ROOT_DIR_NAME = "BPTracker";
     final static String NIX_ROOT_DIR_NAME = '.' + WIN_MAC_ROOT_DIR_NAME;
-    // final static String CONFIG_FILE_NAME = "config.properties";
     final static String DATA_OUTPUT_FILE_NAME = "data.csv";
     final static Path ROOT_DIR_PATH = generateRootDirPath();
-    // final static Path CONFIG_FILE_PATH = generateConfigFilePath();
-    final static Path DEFAULT_DATA_OUTPUT_FILE_PATH = generateDefaultDataOutputFilePath();
 
     static boolean rootDirExists() { return Files.exists(ROOT_DIR_PATH); }
-
-    // static boolean configFileExists() { return Files.exists(CONFIG_FILE_PATH); }
-
-    static boolean defaultDataOutputFileExists() { return Files.exists(DEFAULT_DATA_OUTPUT_FILE_PATH); }
 
     static Path generateRootDirPath()
     {
@@ -59,15 +52,5 @@ final class SysPaths
         }
 
         throw new Error(String.format("Unrecognized operating system: \"%s\"", lowerCaseOSName));
-    }
-
-    // static Path generateConfigFilePath()
-    // {
-    //     return Path.of(generateRootDirPath().toString(), SysPaths.CONFIG_FILE_NAME);
-    // }
-
-    static Path generateDefaultDataOutputFilePath()
-    {
-        return Path.of(generateRootDirPath().toString(), SysPaths.DATA_OUTPUT_FILE_NAME);
     }
 }
