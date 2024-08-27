@@ -14,7 +14,7 @@ class RootWindow implements Runnable
 	}
 }
 
-public class BloodPressureTracker {
+public class Main {
 
 	public static void main(String args[])
 	{

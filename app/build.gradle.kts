@@ -20,7 +20,7 @@ java {
 }
 
 application {
-    mainClass = "beppy.BloodPressureTracker"
+    mainClass = "beppy.Main"
 }
 
 tasks.named<Test>("test") {
