@@ -3,14 +3,14 @@ package beppy;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-class RootWindow implements Runnable
+final class RootWindow implements Runnable
 {
 	public void run()
 	{
-		final JFrame _jframe = new JFrame();
-		_jframe.setTitle("Beppy");
-		_jframe.setSize(700, 100);
-		_jframe.setVisible(true);
+		final JFrame rootJFrame = new JFrame();
+		rootJFrame.setTitle("Beppy");
+		rootJFrame.setSize(700, 100);
+		rootJFrame.setVisible(true);
 	}
 }
 
