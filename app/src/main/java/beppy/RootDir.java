@@ -9,11 +9,11 @@ final class RootDir
     final static String WIN_MAC_ROOT_DIR_NAME = "BPTracker";
     final static String NIX_ROOT_DIR_NAME = '.' + WIN_MAC_ROOT_DIR_NAME;
     final static String DATA_OUTPUT_FILE_NAME = "data.csv";
-    final static Path ROOT_DIR_PATH = generateRootDirPath();
+    final static Path PATH = generateRootDirPath();
 
-    static boolean exists() { return Files.exists(ROOT_DIR_PATH); }
+    static boolean exists() { return Files.exists(PATH); }
 
-    static Path generateRootDirPath()
+    private static Path generateRootDirPath()
     {
         final String lowerCaseOSName =
             Objects.requireNonNull(
