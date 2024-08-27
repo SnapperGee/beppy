@@ -3,7 +3,6 @@ package beppy;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import java.util.Arrays;
-import java.awt.BorderLayout;
 
 final class RootWindow implements Runnable
 {
@@ -12,7 +11,7 @@ final class RootWindow implements Runnable
 		final JFrame rootJFrame = new JFrame();
 		rootJFrame.setName("Beppy");
 		rootJFrame.setTitle("Beppy");
-		rootJFrame.setSize(700, 100);
+		rootJFrame.setSize(500, 300);
 
 		final String[][] data = Arrays.copyOfRange(DataFile.readTo2dArray(), 1, DataFile.readTo2dArray().length);
 
