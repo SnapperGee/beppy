@@ -18,7 +18,7 @@ final class RootWindow implements Runnable
 
         final String[][] data = DataFile.readTo2d().toArray(String[][]::new);
 
-        final var table = ScrollableDataTableFrame.create(data);
+        final var table = DataTableFrame.create(data);
 
         final var addDataPanel = AddDataPanel.create();
 

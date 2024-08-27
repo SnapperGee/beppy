@@ -7,7 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.Color;
 
-final class ScrollableDataTableFrame
+final class DataTableFrame
 {
     static JScrollPane create(String[][] data)
     {
