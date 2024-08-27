@@ -6,6 +6,7 @@ import javax.swing.BoxLayout;
 
 final class RootWindow implements Runnable
 {
+    @Override
     public void run()
     {
         final JFrame rootJFrame = new JFrame();
