@@ -11,6 +11,7 @@ final class ScrollableDataTableFrame
     {
         final JTable table = new JTable(data, DataFile.HEADER_STRINGS.toArray());
         final JScrollPane scrollPane = new JScrollPane(table);
+        table.setDefaultEditor(Object.class, null);
         table.setFillsViewportHeight(true);
         table.setGridColor(Color.GRAY);
         table.setShowGrid(true);
