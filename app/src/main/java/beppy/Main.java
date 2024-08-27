@@ -18,14 +18,14 @@ public class Main {
 
 	public static void main(String args[])
 	{
-		if( ! OutputDataFile.exists())
+		if( ! DataFile.exists())
 		{
 			System.out.println("Data file not found. Creating output data file...");
-			final var path = OutputDataFile.create();
+			final var path = DataFile.create();
 			System.out.printf("Data file created at: \"%s\"", path);
 		}
 
-		System.out.printf("Using output data file: \"%s\"", OutputDataFile.PATH);
+		System.out.printf("Using output data file: \"%s\"", DataFile.PATH);
 
 		SwingUtilities.invokeLater(new RootWindow());
 	}

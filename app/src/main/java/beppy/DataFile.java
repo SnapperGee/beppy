@@ -8,7 +8,7 @@ import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-final class OutputDataFile
+final class DataFile
 {
     final static List<String> HEADER_STRINGS = List.of("Systolic", "Diastolic", "CreatedAt");
 
@@ -16,7 +16,7 @@ final class OutputDataFile
 
     final static Path DIR_PATH = RootDir.PATH;
 
-    final static Path PATH = Path.of(RootDir.PATH.toString(), OutputDataFile.NAME);
+    final static Path PATH = Path.of(RootDir.PATH.toString(), DataFile.NAME);
 
     static boolean exists() { return Files.exists(PATH); }
 
@@ -29,8 +29,8 @@ final class OutputDataFile
                 RootDir.create();
             }
 
-            final Path file = Files.createFile(OutputDataFile.PATH);
-            final String header = String.join(", ", OutputDataFile.HEADER_STRINGS);
+            final Path file = Files.createFile(DataFile.PATH);
+            final String header = String.join(", ", DataFile.HEADER_STRINGS);
             return Files.writeString(file, header + '\n');
         }
         catch(IOException err)
@@ -53,7 +53,7 @@ final class OutputDataFile
             throw new Error(String.format("Diastolic contains non digit character: \"%s\"", diastolic));
         }
 
-        return OutputDataFile.append(Integer.parseInt(systolic), Integer.parseInt(diastolic));
+        return DataFile.append(Integer.parseInt(systolic), Integer.parseInt(diastolic));
     }
 
     static Path append(int systolic, int diastolic)
@@ -61,7 +61,7 @@ final class OutputDataFile
         try
         {
             return Files.writeString(
-                OutputDataFile.PATH,
+                DataFile.PATH,
                 String.format("%d, %d, %3$tY/%3$tm/%3$td-%3$tH:%3$tM:%3$tS\n", systolic, diastolic, LocalDateTime.now()),
                 StandardOpenOption.APPEND
             );
@@ -78,7 +78,7 @@ final class OutputDataFile
     {
         try
         {
-            return Files.readAllLines(OutputDataFile.PATH);
+            return Files.readAllLines(DataFile.PATH);
         }
         catch (IOException err)
         {
@@ -90,7 +90,7 @@ final class OutputDataFile
 
     static String[][] readTo2dArray()
     {
-        return OutputDataFile.read().stream()
+        return DataFile.read().stream()
             .map(line ->
                 Arrays.stream(line.split(","))
                 .map(String::strip).toArray(String[]::new))
