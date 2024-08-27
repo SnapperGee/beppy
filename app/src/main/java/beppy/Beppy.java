@@ -12,7 +12,7 @@ final class RootWindow implements Runnable
 
         rootJFrame.setLayout(new BoxLayout(rootJFrame.getContentPane(), BoxLayout.Y_AXIS));
 
-        rootJFrame.setName("Beppy");
+        rootJFrame.setName("Root");
         rootJFrame.setTitle("Beppy");
         rootJFrame.setSize(500, 300);
 
