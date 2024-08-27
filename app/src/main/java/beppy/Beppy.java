@@ -4,7 +4,6 @@ import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import java.util.Arrays;
 import java.awt.Color;
 import javax.swing.BoxLayout;
 
