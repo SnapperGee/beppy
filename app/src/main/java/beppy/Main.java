@@ -20,8 +20,9 @@ public class Main {
 	{
 		if( ! OutputDataFile.exists())
 		{
-			System.out.println("Output data file not found.Creating output data file...");
-			OutputDataFile.create();
+			System.out.println("Data file not found. Creating output data file...");
+			final var path = OutputDataFile.create();
+			System.out.printf("Data file created at: \"%s\"", path);
 		}
 
 		System.out.printf("Using output data file: \"%s\"", OutputDataFile.PATH);
