@@ -3,7 +3,6 @@ package beppy;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import java.awt.BorderLayout;
 
 final class ScrollableDataTableFrame
 {
