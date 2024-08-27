@@ -47,14 +47,7 @@ public class AddEntryWindow extends JFrame {
 			}
 		});
 
-		JButton viewButton = new JButton("View");
-		viewButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new ViewEntriesWindow();
-				dispose();
-			}
-		});
+
 		//add variables to the window
 		setTitle("Add Entry");
 		setSize (400,300);
@@ -72,7 +65,6 @@ public class AddEntryWindow extends JFrame {
 		add(new JLabel("Date/Time:"));
 		add(dateTimeLabel);
 		add(addButton);
-		add(viewButton);
 		//set window behaviors
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
