@@ -2,14 +2,24 @@ package beppy;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import java.util.Arrays;
+import java.awt.BorderLayout;
 
 final class RootWindow implements Runnable
 {
 	public void run()
 	{
 		final JFrame rootJFrame = new JFrame();
+		rootJFrame.setName("Beppy");
 		rootJFrame.setTitle("Beppy");
 		rootJFrame.setSize(700, 100);
+
+		final String[][] data = Arrays.copyOfRange(DataFile.readTo2dArray(), 1, DataFile.readTo2dArray().length);
+
+		final var table = ScrollableDataTableFrame.create(data);
+
+		rootJFrame.add(table);
+
 		rootJFrame.setVisible(true);
 	}
 }
