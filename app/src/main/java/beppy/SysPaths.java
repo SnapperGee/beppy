@@ -9,8 +9,11 @@ final class SysPaths
     final static String NIX_ROOT_DIR_NAME = '.' + WIN_MAC_ROOT_DIR_NAME;
     final static String CONFIG_FILE_NAME = "config.properties";
     final static String ENTIRES_OUTPUT_FILE_NAME = "entries.xlsx";
+    final static Path ROOT_DIR_PATH = generateRootDirPath();
+    final static Path CONFIG_FILE_PATH = generateConfigFilePath();
+    final static Path DEFAULT_ENTRIES_OUTPUT_FILE_PATH = generateDefaultEntriesOutputFilePath();
 
-    Path generateRootDirPath()
+    static Path generateRootDirPath()
     {
         final String lowerCaseOSName =
             Objects.requireNonNull(
@@ -23,7 +26,7 @@ final class SysPaths
             final String windowsAppDataDir =
                 Objects.requireNonNull(
                     System.getenv("APPDATA"),
-                    "Null windows \"APPDATA\" env variable.");
+                    "Null Windows \"APPDATA\" env variable.");
 
             return Path.of(windowsAppDataDir, SysPaths.WIN_MAC_ROOT_DIR_NAME).toAbsolutePath();
         }
@@ -33,7 +36,7 @@ final class SysPaths
             final String macHomeDir =
                 Objects.requireNonNull(
                     System.getProperty("user.home"),
-                    "Null mac \"user.home\" sys property.");
+                    "Null Mac \"user.home\" sys property.");
 
             return Path.of(macHomeDir, "Library", "Application Support", SysPaths.WIN_MAC_ROOT_DIR_NAME).toAbsolutePath();
         }
@@ -51,12 +54,12 @@ final class SysPaths
         throw new Error(String.format("Unrecognized operating system: \"%s\"", lowerCaseOSName));
     }
 
-    Path generateConfigFilePath()
+    static Path generateConfigFilePath()
     {
         return Path.of(generateRootDirPath().toString(), SysPaths.CONFIG_FILE_NAME);
     }
 
-    Path generateDefaultEntriesOutputFilePath()
+    static Path generateDefaultEntriesOutputFilePath()
     {
         return Path.of(generateRootDirPath().toString(), SysPaths.ENTIRES_OUTPUT_FILE_NAME);
     }
