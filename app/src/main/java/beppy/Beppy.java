@@ -23,7 +23,8 @@ final class RootWindow implements Runnable
 	}
 }
 
-public class Main {
+public class Beppy
+{
 
 	public static void main(String args[])
 	{

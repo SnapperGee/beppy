@@ -18,7 +18,7 @@ java {
 }
 
 application {
-    mainClass = "beppy.Main"
+    mainClass = "beppy.Beppy"
 }
 
 tasks.named<Test>("test") {
