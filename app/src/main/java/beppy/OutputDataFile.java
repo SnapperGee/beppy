@@ -61,7 +61,7 @@ final class OutputDataFile
         {
             return Files.writeString(
                 OutputDataFile.PATH,
-                String.format("%d, %d, %t\n", systolic, diastolic, LocalDateTime.now()),
+                String.format("%d, %d, %3$tY/%3$tm/%3$td-%3$tH:%3$tM:%3$tS\n", systolic, diastolic, LocalDateTime.now()),
                 StandardOpenOption.APPEND
             );
         }
