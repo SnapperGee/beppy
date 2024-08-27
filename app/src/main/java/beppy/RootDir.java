@@ -2,6 +2,7 @@ package beppy;
 
 import java.util.Objects;
 import java.nio.file.Path;
+import java.io.IOException;
 import java.nio.file.Files;
 
 final class RootDir
@@ -11,7 +12,20 @@ final class RootDir
 
     final static Path PATH = generatePath();
 
-    static boolean exists() { return Files.exists(PATH); }
+    static boolean exists() { return Files.exists(RootDir.PATH); }
+
+    static void create()
+    {
+        try
+        {
+            Files.createDirectory(RootDir.PATH);
+        }
+        catch(IOException err)
+        {
+            err.printStackTrace();
+            System.exit(111);
+        }
+    }
 
     private static Path generatePath()
     {
