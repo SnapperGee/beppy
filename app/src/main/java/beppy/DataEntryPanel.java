@@ -2,7 +2,7 @@ package beppy;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JFormattedTextField;
 
 final class DataEntryPanel
 {
@@ -14,10 +14,10 @@ final class DataEntryPanel
 
         addButton.setName("AddButton");
 
-        final JTextField systolicEntryTextField = new JTextField(10);
-        final JTextField diastolicEntryTextField = new JTextField(10);
-
+        final JFormattedTextField systolicEntryTextField = new JFormattedTextField(10);
         systolicEntryTextField.setName("SystolicEntryTextField");
+
+        final JFormattedTextField diastolicEntryTextField = new JFormattedTextField(10);
         diastolicEntryTextField.setName("DiastolicEntryTextField");
 
         buttonAndInputFieldsPane.add(addButton);
