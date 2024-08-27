@@ -36,12 +36,12 @@ public class Beppy
     {
         if( ! DataFile.exists())
         {
-            System.out.println("Data file not found. Creating output data file...");
+            System.out.println("Data file not found. Creating data file...");
             final var path = DataFile.create();
             System.out.printf("Data file created at: \"%s\"", path);
         }
 
-        System.out.printf("Using output data file: \"%s\"", DataFile.PATH);
+        System.out.printf("Using data file: \"%s\"", DataFile.PATH);
 
         SwingUtilities.invokeLater(new RootWindow());
     }
