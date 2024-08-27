@@ -14,16 +14,17 @@ final class RootDir
 
     static boolean exists() { return Files.exists(RootDir.PATH); }
 
-    static void create()
+    static Path create()
     {
         try
         {
-            Files.createDirectory(RootDir.PATH);
+            return Files.createDirectory(RootDir.PATH);
         }
         catch(IOException err)
         {
             err.printStackTrace();
             System.exit(111);
+            return null;
         }
     }
 

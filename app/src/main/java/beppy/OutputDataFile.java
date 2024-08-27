@@ -17,7 +17,7 @@ final class OutputDataFile
 
     static boolean exists() { return Files.exists(PATH); }
 
-    static void create()
+    static Path create()
     {
         try
         {
@@ -28,12 +28,16 @@ final class OutputDataFile
 
             final Path file = Files.createFile(OutputDataFile.PATH);
             final String header = String.join(", ", OutputDataFile.HEADER);
-            Files.writeString(file, header + '\n');
+            return Files.writeString(file, header + '\n');
         }
         catch(IOException err)
         {
             err.printStackTrace();
             System.exit(222);
+            return null;
         }
     }
+
+    static void append(int systolic, int diastolic)
+    {}
 }
