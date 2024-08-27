@@ -4,6 +4,8 @@ import java.nio.file.Path;
 import java.nio.file.Files;
 import java.io.IOException;
 import java.util.List;
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
 
 final class OutputDataFile
 {
@@ -38,6 +40,36 @@ final class OutputDataFile
         }
     }
 
-    static void append(int systolic, int diastolic)
-    {}
+    static Path append(String systolic, String diastolic)
+    {
+        if( ! systolic.chars().allMatch(Character::isDigit))
+        {
+            throw new Error(String.format("Systolic contains non digit character: \"%s\"", systolic));
+        }
+
+        if( ! diastolic.chars().allMatch(Character::isDigit))
+        {
+            throw new Error(String.format("Diastolic contains non digit character: \"%s\"", diastolic));
+        }
+
+        return OutputDataFile.append(Integer.parseInt(systolic), Integer.parseInt(diastolic));
+    }
+
+    static Path append(int systolic, int diastolic)
+    {
+        try
+        {
+            return Files.writeString(
+                OutputDataFile.PATH,
+                String.format("%d, %d, %t\n", systolic, diastolic, LocalDateTime.now()),
+                StandardOpenOption.APPEND
+            );
+        }
+        catch (IOException err)
+        {
+            err.printStackTrace();
+            System.exit(333);
+            return null;
+        }
+    }
 }
