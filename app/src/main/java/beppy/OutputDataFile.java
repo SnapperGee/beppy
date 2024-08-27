@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 final class OutputDataFile
 {
-    private final static List<String> HEADER = List.of("Systolic", "Diastolic", "CreatedAt");
+    final static List<String> HEADER_STRINGS = List.of("Systolic", "Diastolic", "CreatedAt");
 
     final static String NAME = "data.csv";
 
@@ -29,7 +29,7 @@ final class OutputDataFile
             }
 
             final Path file = Files.createFile(OutputDataFile.PATH);
-            final String header = String.join(", ", OutputDataFile.HEADER);
+            final String header = String.join(", ", OutputDataFile.HEADER_STRINGS);
             return Files.writeString(file, header + '\n');
         }
         catch(IOException err)
