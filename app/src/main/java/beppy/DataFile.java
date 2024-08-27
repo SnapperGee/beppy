@@ -7,6 +7,7 @@ import java.util.List;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 final class DataFile
 {
@@ -74,11 +75,11 @@ final class DataFile
         }
     }
 
-    static List<String> read()
+    static Stream<String> read(boolean includeHeader)
     {
         try
         {
-            return Files.readAllLines(DataFile.PATH);
+            return includeHeader ? Files.lines(DataFile.PATH).skip(1) : Files.lines(DataFile.PATH);
         }
         catch (IOException err)
         {
@@ -88,12 +89,22 @@ final class DataFile
         }
     }
 
-    static String[][] readTo2dArray()
+    static Stream<String> read()
     {
-        return DataFile.read().stream()
+        return read(false);
+    }
+
+    static Stream<String[]> readTo2d(boolean includeHeader)
+    {
+        return DataFile.read(includeHeader)
             .map(line ->
                 Arrays.stream(line.split(","))
-                .map(String::strip).toArray(String[]::new))
-            .toArray(String[][]::new);
+                    .map(String::strip).toArray(String[]::new)
+            );
+    }
+
+    static Stream<String[]> readTo2d()
+    {
+        return readTo2d(false);
     }
 }

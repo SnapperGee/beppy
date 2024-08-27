@@ -23,7 +23,7 @@ final class RootWindow implements Runnable
         rootJFrame.setTitle("Beppy");
         rootJFrame.setSize(500, 300);
 
-        final String[][] data = Arrays.copyOfRange(DataFile.readTo2dArray(), 1, DataFile.readTo2dArray().length);
+        final String[][] data = DataFile.readTo2d().toArray(String[][]::new);
 
         final var table = ScrollableDataTableFrame.create(data);
 
