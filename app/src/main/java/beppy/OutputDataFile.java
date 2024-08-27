@@ -21,6 +21,11 @@ final class OutputDataFile
     {
         try
         {
+            if( ! RootDir.exists())
+            {
+                RootDir.create();
+            }
+
             final Path file = Files.createFile(OutputDataFile.PATH);
             final String header = String.join(", ", OutputDataFile.HEADER);
             Files.writeString(file, header + '\n');
