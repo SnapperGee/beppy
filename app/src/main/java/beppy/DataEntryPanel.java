@@ -12,14 +12,17 @@ final class DataEntryPanel
 
         final JButton addButton = new JButton("Add");
 
-        addButton.setName("Add Button");
+        addButton.setName("AddButton");
 
-        final JTextField systolicTextField = new JTextField(10);
-        final JTextField diastolicTextField = new JTextField(10);
+        final JTextField systolicEntryTextField = new JTextField(10);
+        final JTextField diastolicEntryTextField = new JTextField(10);
+
+        systolicEntryTextField.setName("SystolicEntryTextField");
+        diastolicEntryTextField.setName("DiastolicEntryTextField");
 
         buttonAndInputFieldsPane.add(addButton);
-        buttonAndInputFieldsPane.add(systolicTextField);
-        buttonAndInputFieldsPane.add(diastolicTextField);
+        buttonAndInputFieldsPane.add(systolicEntryTextField);
+        buttonAndInputFieldsPane.add(diastolicEntryTextField);
 
         return buttonAndInputFieldsPane;
     }
