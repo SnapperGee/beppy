@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 final class OutputDataFile
 {
@@ -85,5 +86,14 @@ final class OutputDataFile
             System.exit(244);
             return null;
         }
+    }
+
+    static String[][] readTo2dArray()
+    {
+        return OutputDataFile.read().stream()
+            .map(line ->
+                Arrays.stream(line.split(","))
+                .map(String::strip).toArray(String[]::new))
+            .toArray(String[][]::new);
     }
 }
