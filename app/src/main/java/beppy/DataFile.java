@@ -79,7 +79,7 @@ final class DataFile
     {
         try
         {
-            return includeHeader ? Files.lines(DataFile.PATH).skip(1) : Files.lines(DataFile.PATH);
+            return includeHeader ? Files.lines(DataFile.PATH) : Files.lines(DataFile.PATH).skip(1);
         }
         catch (IOException err)
         {
