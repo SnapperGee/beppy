@@ -4,7 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-final class AddDataPanel
+final class DataEntryPanel
 {
     final static JPanel create()
     {

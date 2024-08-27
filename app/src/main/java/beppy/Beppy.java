@@ -20,7 +20,7 @@ final class RootWindow implements Runnable
 
         final var table = DataTableFrame.create(data);
 
-        final var addDataPanel = AddDataPanel.create();
+        final var addDataPanel = DataEntryPanel.create();
 
         rootJFrame.add(table);
         rootJFrame.add(addDataPanel);
