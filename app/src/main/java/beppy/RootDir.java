@@ -6,8 +6,9 @@ import java.nio.file.Files;
 
 final class RootDir
 {
-    final static String WIN_MAC_ROOT_DIR_NAME = "BPTracker";
-    final static String NIX_ROOT_DIR_NAME = '.' + WIN_MAC_ROOT_DIR_NAME;
+    private final static String WIN_MAC_ROOT_DIR_NAME = "BPTracker";
+    private final static String NIX_ROOT_DIR_NAME = '.' + WIN_MAC_ROOT_DIR_NAME;
+
     final static String DATA_OUTPUT_FILE_NAME = "data.csv";
     final static Path PATH = generatePath();
 
