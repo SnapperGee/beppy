@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import java.util.Arrays;
 import java.awt.Color;
+import javax.swing.BoxLayout;
 
 final class RootWindow implements Runnable
 {
@@ -15,6 +16,9 @@ final class RootWindow implements Runnable
         defaults.putIfAbsent("Table.alternateRowColor", Color.LIGHT_GRAY);
 
         final JFrame rootJFrame = new JFrame();
+
+        rootJFrame.setLayout(new BoxLayout(rootJFrame.getContentPane(), BoxLayout.Y_AXIS));
+
         rootJFrame.setName("Beppy");
         rootJFrame.setTitle("Beppy");
         rootJFrame.setSize(500, 300);
@@ -23,7 +27,10 @@ final class RootWindow implements Runnable
 
         final var table = ScrollableDataTableFrame.create(data);
 
+        final var addDataPanel = AddDataPanel.create();
+
         rootJFrame.add(table);
+        rootJFrame.add(addDataPanel);
 
         rootJFrame.setVisible(true);
     }
