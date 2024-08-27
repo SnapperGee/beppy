@@ -68,7 +68,21 @@ final class OutputDataFile
         catch (IOException err)
         {
             err.printStackTrace();
-            System.exit(333);
+            System.exit(233);
+            return null;
+        }
+    }
+
+    static List<String> read()
+    {
+        try
+        {
+            return Files.readAllLines(OutputDataFile.PATH);
+        }
+        catch (IOException err)
+        {
+            err.printStackTrace();
+            System.exit(244);
             return null;
         }
     }
