@@ -1,19 +1,13 @@
 package beppy;
 
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import java.awt.Color;
 import javax.swing.BoxLayout;
 
 final class RootWindow implements Runnable
 {
     public void run()
     {
-        UIDefaults defaults = UIManager.getLookAndFeelDefaults();
-        defaults.putIfAbsent("Table.alternateRowColor", Color.LIGHT_GRAY);
-
         final JFrame rootJFrame = new JFrame();
 
         rootJFrame.setLayout(new BoxLayout(rootJFrame.getContentPane(), BoxLayout.Y_AXIS));
