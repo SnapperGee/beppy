@@ -7,7 +7,7 @@ import java.nio.file.Files;
 
 final class RootDir
 {
-    private final static String WIN_MAC_DIR_NAME = "BPTracker";
+    private final static String WIN_MAC_DIR_NAME = "bptracker";
     private final static String NIX_DIR_NAME = '.' + WIN_MAC_DIR_NAME;
 
     final static Path PATH = generatePath();
@@ -56,7 +56,7 @@ final class RootDir
             return Path.of(macHomeDir, "Library", "Application Support", RootDir.WIN_MAC_DIR_NAME).toAbsolutePath();
         }
 
-        if(lowerCaseOSName.contains("nix"))
+        if(lowerCaseOSName.contains("nix") || lowerCaseOSName.contains("linux"))
         {
             final String nixHomeDir =
                 Objects.requireNonNull(
