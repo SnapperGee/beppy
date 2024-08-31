@@ -4,11 +4,45 @@ import java.util.Objects;
 import java.nio.file.Path;
 import java.io.IOException;
 import java.nio.file.Files;
+import static java.io.File.separator;
 
 final class Root
 {
     private final static String WIN_MAC_DIR_NAME = "bptracker";
     private final static String NIX_DIR_NAME = '.' + WIN_MAC_DIR_NAME;
+
+    static enum DirPath
+    {
+        NIX(Path.of(
+            separator,
+            Objects.requireNonNull(
+                System.getProperty("user.home"),
+                "Null nix \"user.home\" sys property."
+            ),
+            ".config",
+            Root.NIX_DIR_NAME
+        )),
+
+        MAC(Path.of(separator, "Library", "Application Support", Root.WIN_MAC_DIR_NAME)),
+
+        WIN(Path.of(
+            separator,
+            Objects.requireNonNull(
+                    System.getenv("APPDATA"),
+                    "Null Windows \"APPDATA\" env variable."
+            ),
+            Root.WIN_MAC_DIR_NAME
+        ));
+
+        final private Path _path;
+
+        private DirPath(final Path path)
+        {
+            this._path = path.toAbsolutePath();
+        }
+
+        Path getPath() { return this._path; }
+    }
 
     final static Path PATH = generatePath();
 
