@@ -1,6 +1,7 @@
 package beppy;
 
 import java.util.Objects;
+import java.util.stream.IntStream;
 import java.nio.file.Path;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,37 +9,22 @@ import static java.io.File.separator;
 
 final class Root
 {
-    private final static String WIN_MAC_DIR_NAME = "bptracker";
-    private final static String NIX_DIR_NAME = '.' + WIN_MAC_DIR_NAME;
+    private final static String DIR_NAME = "bptracker";
 
     static enum DirPath
     {
-        NIX(Path.of(
-            separator,
-            Objects.requireNonNull(
-                System.getProperty("user.home"),
-                "Null nix \"user.home\" sys property."
-            ),
-            ".config",
-            Root.NIX_DIR_NAME
-        )),
-
-        MAC(Path.of(separator, "Library", "Application Support", Root.WIN_MAC_DIR_NAME)),
-
-        WIN(Path.of(
-            separator,
-            Objects.requireNonNull(
-                    System.getenv("APPDATA"),
-                    "Null Windows \"APPDATA\" env variable."
-            ),
-            Root.WIN_MAC_DIR_NAME
-        ));
+        NIX(System.getProperty("user.home"), ".config", Root.DIR_NAME),
+        MAC("Library", "Application Support", Root.DIR_NAME),
+        WIN(System.getenv("APPDATA"), Root.DIR_NAME);
 
         final private Path _path;
 
-        private DirPath(final Path path)
+        private DirPath(final String... pathSegments)
         {
-            this._path = path.toAbsolutePath();
+            this._path =
+                pathSegments.length != 0 && IntStream.range(0, pathSegments.length - 1).noneMatch(index -> pathSegments[index] == null)
+                ? Path.of(separator, pathSegments).toAbsolutePath()
+                : null;
         }
 
         Path getPath() { return this._path; }
@@ -64,42 +50,33 @@ final class Root
 
     private static Path generatePath()
     {
-        final String lowerCaseOSName =
+        final String upperCaseOSName =
             Objects.requireNonNull(
                 System.getProperty("os.name"),
                 "Null \"os.name\" sys property.")
-            .toLowerCase();
+            .toUpperCase();
 
-        if(lowerCaseOSName.contains("win"))
+        if(upperCaseOSName.contains(Root.DirPath.NIX.toString()) || upperCaseOSName.contains("LINUX"))
         {
-            final String windowsAppDataDir =
-                Objects.requireNonNull(
-                    System.getenv("APPDATA"),
-                    "Null Windows \"APPDATA\" env variable.");
-
-            return Path.of(windowsAppDataDir, Root.WIN_MAC_DIR_NAME).toAbsolutePath();
+            return Objects.requireNonNull(
+                Root.DirPath.NIX.getPath(),
+                "Null nix user home path."
+            );
         }
 
-        if(lowerCaseOSName.contains("mac"))
+        if(upperCaseOSName.contains(Root.DirPath.MAC.toString()))
         {
-            final String macHomeDir =
-                Objects.requireNonNull(
-                    System.getProperty("user.home"),
-                    "Null Mac \"user.home\" sys property.");
-
-            return Path.of(macHomeDir, "Library", "Application Support", Root.WIN_MAC_DIR_NAME).toAbsolutePath();
+            return Root.DirPath.MAC.getPath();
         }
 
-        if(lowerCaseOSName.contains("nix") || lowerCaseOSName.contains("linux"))
+        if(upperCaseOSName.contains(Root.DirPath.WIN.toString()))
         {
-            final String nixHomeDir =
-                Objects.requireNonNull(
-                    System.getProperty("user.home"),
-                    "Null nix \"user.home\" sys property.");
-
-            return Path.of(nixHomeDir, Root.NIX_DIR_NAME).toAbsolutePath();
+            return Objects.requireNonNull(
+                Root.DirPath.WIN.getPath(),
+                "Null Windows app data path."
+            );
         }
 
-        throw new Error(String.format("Unrecognized operating system: \"%s\"", lowerCaseOSName));
+        throw new Error(String.format("Unrecognized operating system: \"%s\"", upperCaseOSName));
     }
 }
