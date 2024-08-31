@@ -15,9 +15,9 @@ final class DataFile
 
     final static String NAME = "data.csv";
 
-    final static Path DIR_PATH = RootDir.PATH;
+    final static Path DIR_PATH = Root.PATH;
 
-    final static Path PATH = Path.of(RootDir.PATH.toString(), DataFile.NAME);
+    final static Path PATH = Path.of(Root.PATH.toString(), DataFile.NAME);
 
     static boolean exists() { return Files.exists(PATH); }
 
@@ -25,9 +25,9 @@ final class DataFile
     {
         try
         {
-            if( ! RootDir.exists())
+            if( ! Root.exists())
             {
-                RootDir.create();
+                Root.create();
             }
 
             final Path file = Files.createFile(DataFile.PATH);

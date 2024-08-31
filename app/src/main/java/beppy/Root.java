@@ -5,20 +5,20 @@ import java.nio.file.Path;
 import java.io.IOException;
 import java.nio.file.Files;
 
-final class RootDir
+final class Root
 {
     private final static String WIN_MAC_DIR_NAME = "bptracker";
     private final static String NIX_DIR_NAME = '.' + WIN_MAC_DIR_NAME;
 
     final static Path PATH = generatePath();
 
-    static boolean exists() { return Files.exists(RootDir.PATH); }
+    static boolean exists() { return Files.exists(Root.PATH); }
 
     static Path create()
     {
         try
         {
-            return Files.createDirectory(RootDir.PATH);
+            return Files.createDirectory(Root.PATH);
         }
         catch(IOException err)
         {
@@ -43,7 +43,7 @@ final class RootDir
                     System.getenv("APPDATA"),
                     "Null Windows \"APPDATA\" env variable.");
 
-            return Path.of(windowsAppDataDir, RootDir.WIN_MAC_DIR_NAME).toAbsolutePath();
+            return Path.of(windowsAppDataDir, Root.WIN_MAC_DIR_NAME).toAbsolutePath();
         }
 
         if(lowerCaseOSName.contains("mac"))
@@ -53,7 +53,7 @@ final class RootDir
                     System.getProperty("user.home"),
                     "Null Mac \"user.home\" sys property.");
 
-            return Path.of(macHomeDir, "Library", "Application Support", RootDir.WIN_MAC_DIR_NAME).toAbsolutePath();
+            return Path.of(macHomeDir, "Library", "Application Support", Root.WIN_MAC_DIR_NAME).toAbsolutePath();
         }
 
         if(lowerCaseOSName.contains("nix") || lowerCaseOSName.contains("linux"))
@@ -63,7 +63,7 @@ final class RootDir
                     System.getProperty("user.home"),
                     "Null nix \"user.home\" sys property.");
 
-            return Path.of(nixHomeDir, RootDir.NIX_DIR_NAME).toAbsolutePath();
+            return Path.of(nixHomeDir, Root.NIX_DIR_NAME).toAbsolutePath();
         }
 
         throw new Error(String.format("Unrecognized operating system: \"%s\"", lowerCaseOSName));
